@@ -5,15 +5,16 @@ This pipeline is designed to rapidly infer Streptococcus suis serotype from Oxfo
 
 ## Usage
 ```
-Required arguments:
+_Required arguments:_
 -i input raw reads
 -o  path to output directory
 -s  sample name
-Optional arguments:
+
+_Optional arguments:_
 -h|--help       display help message
 -t|--threads    number of threads [4]
 
-Example Command Line:
+_Example Command Line:_
 ./Ssuis_Sero.sh -s Sample_1 -i /path/to/Sample_1.fastq -o /path/to/output
 ``` 
 
