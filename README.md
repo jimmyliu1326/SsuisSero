@@ -5,7 +5,7 @@ This pipeline is designed to rapidly infer Streptococcus suis serotype from Oxfo
 
 ## Usage
 ```
-_Required arguments:_
+__Required arguments:__
 -i input raw reads
 -o  path to output directory
 -s  sample name
