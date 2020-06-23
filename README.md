@@ -6,7 +6,7 @@ This pipeline is designed to rapidly infer Streptococcus suis serotype from Oxfo
 ## Usage
 <pre>
 <b>Required arguments:</b>
--i input raw reads
+-i  input raw reads
 -o  path to output directory
 -s  sample name
 
@@ -15,7 +15,7 @@ This pipeline is designed to rapidly infer Streptococcus suis serotype from Oxfo
 -t|--threads    number of threads [4]
 
 <b>Example Command Line:</b>
-./Ssuis_Sero.sh -s Sample_1 -i /path/to/Sample_1.fastq -o /path/to/output
+Ssuis_Sero.sh -s Sample_1 -i /path/to/Sample_1.fastq -o /path/to/output
 </pre>
 
 ## Conda Installation
