@@ -5,7 +5,7 @@ This pipeline is designed to rapidly infer Streptococcus suis serotype from Oxfo
 
 ## Usage
 ```
-Required arguements:
+Required arguments:
 -i input raw reads
 -o  path to output directory
 -s  sample name
@@ -18,3 +18,12 @@ Example Command Line:
 ``` 
 
 ## Conda Installation
+
+### Dependencies
+* Miniasm v0.3_r179
+* Medaka v1.0.1
+* Racon v1.4.13
+* Freebayes v1.3.2
+* Samtools v1.9
+* Minimap2 v2.17
+* Vcflib v1.0.0_rc2
