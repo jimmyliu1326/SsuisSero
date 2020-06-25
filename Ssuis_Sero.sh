@@ -104,12 +104,14 @@ variant_calling() {
     if [ $(echo $serotype | grep "2\|1") ]; then
 
         mkdir -p $2
-        src/ssuis_cpsk_SNP_calling.sh -i $1 -o $2 -t $n_threads
+        $pipeline_dir/src/ssuis_cpsk_SNP_calling.sh -i $1 -o $2 -t $n_threads
 
         # identify variants at position 483
-        if [ $(cat $2/*.vcf | grep 483) ]; then
-            serotype=$(echo $serotype | awk '{gsub(/2/,"1/2")}1')
+        variants=$(awk '!/#/' $2/*.vcf | cut -f2)
+        if echo $variants | grep -q 483; then
             serotype=$(echo $serotype | awk '{gsub(/1/,"14")}1')
+            serotype=$(echo $serotype | awk '{gsub(/2/,"1/2")}1')
+            
         fi
     
     fi
