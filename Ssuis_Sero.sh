@@ -80,7 +80,7 @@ blast_search() {
         mkdir -p $2
 
         # blast
-        blastn -query $1 -db $pipeline_dir/database/Ssuis_Serotyping_blast.db -out $2/blast_res.out -num_threads $n_threads -outfmt 11
+        blastn -query $1 -db $pipeline_dir/database/Ssuis_Serotyping_blast.db -out $2/blast_res.out -num_threads $n_threads -outfmt 11 -evalue 1.0e-20
     
         # parse blast results
         blast_formatter -archive $2/blast_res.out -outfmt "7 qacc sacc evalue qstart qend sstart send" | awk '!/#/{print}' > $2/blast_res.tab
