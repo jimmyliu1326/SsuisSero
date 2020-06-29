@@ -57,7 +57,7 @@ assembly() {
         miniasm -f $1 $2/overlaps.paf > $2/graph.gfa
 
         # minipolish
-        minipolish -t $n_threads --rounds 1 $1 $2/graph.gfa > $2/graph_polished.gfa
+        minipolish -t $n_threads --rounds 2 $1 $2/graph.gfa > $2/graph_polished.gfa
 
         # convert to fasta format
         awk '$1 ~/S/ {print ">"$2"\n"$3}' $2/graph_polished.gfa > $2/graph_polished.fasta
