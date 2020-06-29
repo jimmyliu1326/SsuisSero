@@ -54,17 +54,16 @@ assembly() {
         minimap2 -t $n_threads -x ava-ont $1 $1 > $2/overlaps.paf
 
         # generate OLC graph
-        miniasm -f $1 $2/overlaps.paf > $2/graph.ug
+        miniasm -f $1 $2/overlaps.paf > $2/graph.gfa
+
+        # minipolish
+        minipolish -t $n_threads --rounds 1 $1 $2/graph.gfa > $2/graph_polished.gfa
 
         # convert to fasta format
-        awk '$1 ~/S/ {print ">"$2"\n"$3}' $2/graph.ug > $2/graph.fasta
-
-        # consensus calling
-        minimap2 -t $n_threads -x map-ont -t $n_threads $2/graph.fasta $1 > $2/consensus_alignment.paf
-        racon -t $n_threads $1 $2/consensus_alignment.paf $out_dir/assembly/graph.fasta > $2/consensus.fasta
-
+        awk '$1 ~/S/ {print ">"$2"\n"$3}' $2/graph_polished.gfa > $2/graph_polished.fasta
+        
         # genome polish
-        medaka_consensus -t $n_threads -i $1 -d $2/consensus.fasta -o $out_dir -f
+        medaka_consensus -t $n_threads -i $1 -d $2/graph_polished.fasta -o $out_dir -f
         mv $out_dir/consensus.fasta $out_dir/$sample_name.fasta
     else
         echo "$1 cannot be found"
@@ -136,7 +135,7 @@ clean() {
 # main
 main() {
 
-    #assembly $read_path $out_dir/assembly
+    assembly $read_path $out_dir/assembly
     blast_search $out_dir/$sample_name.fasta $out_dir/blast_res
     variant_calling $read_path $out_dir/variant_calling
     write_file $out_dir
