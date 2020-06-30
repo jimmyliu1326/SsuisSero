@@ -19,6 +19,9 @@ SsuisSero.sh -s Sample_1 -i /path/to/Sample_1.fastq -o /path/to/output
 </pre>
 
 ## Conda Installation
+The recommended method of installation for this pipeline is with Conda. Set up a new conda environment and run:
+
+```conda install -c bioconda SsuisSero```
 
 ### Dependencies
 * Miniasm v0.3_r179
