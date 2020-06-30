@@ -23,7 +23,7 @@ pipeline_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 if [ $# == 0 ]
 then
     usage
-    exit
+    exit 0
 fi
 
 opts=`getopt -o hi:o:s:t: -l help,threads: -- "$@"`
@@ -36,7 +36,7 @@ while true; do
         -s) sample_name=$2; shift 2 ;;
         -t|--threads) n_threads=$2; shift 2 ;;
         --) shift; break ;;
-        -h|--help) usage; exit;;
+        -h|--help) usage; exit 0;;
     esac
 done
 
