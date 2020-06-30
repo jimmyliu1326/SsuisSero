@@ -26,10 +26,10 @@ conda install -c bioconda ssuissero
 ```
 
 ### Dependencies
-* Miniasm v0.3_r179
-* Medaka v1.0.1
-* Racon v1.4.13
-* Freebayes v1.3.2
-* Samtools v1.9
-* Minimap2 v2.17
-* Vcflib v1.0.0_rc2
+* Miniasm >= 0.3_r179
+* Medaka >= 1.0.1
+* Freebayes >= 1.3.2
+* Samtools >= 1.9
+* Vcflib >= 1.0.0_rc2
+* Blast >= 2.6
+* Minipolish >= 0.1.2
