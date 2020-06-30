@@ -17,6 +17,7 @@ Optional arguments:
 
 # default parameters
 n_threads=4
+sample_name=""
 pipeline_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # parse arguments
@@ -39,6 +40,11 @@ while true; do
         -h|--help) usage; exit 0;;
     esac
 done
+
+if [ -z $sample_name ]; then
+    echo "Sample name was not given exiting"
+    exit 1
+fi
 
 # Rapid Assembly
 
