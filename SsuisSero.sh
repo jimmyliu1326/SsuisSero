@@ -56,20 +56,11 @@ assembly() {
 
     if test -f $1; then
 
-        # read overlap
-        minimap2 -t $n_threads -x ava-ont $1 $1 > $2/overlaps.paf
+        # Flye assembly
+        flye -t $n_threads --nano-raw $1 -g 2m -i 2 -o $2
 
-        # generate OLC graph
-        miniasm -f $1 $2/overlaps.paf > $2/graph.gfa
-
-        # minipolish
-        minipolish -t $n_threads --rounds 2 $1 $2/graph.gfa > $2/graph_polished.gfa
-
-        # convert to fasta format
-        awk '$1 ~/S/ {print ">"$2"\n"$3}' $2/graph_polished.gfa > $2/graph_polished.fasta
-        
         # genome polish
-        medaka_consensus -t $n_threads -i $1 -d $2/graph_polished.fasta -o $out_dir -f
+        medaka_consensus -t $n_threads -i $1 -d $2/assembly.fasta -o $out_dir -f
         mv $out_dir/consensus.fasta $out_dir/$sample_name.fasta
     else
         echo "$1 cannot be found"
@@ -111,7 +102,7 @@ variant_calling() {
 
     if [[ " ${serotypeArray[@]} " =~ " 1 " ]]; then
         mkdir -p $2
-        #$pipeline_dir/src/ssuis_cpsk_SNP_calling.sh -i $1 -o $2 -t $n_threads
+        $pipeline_dir/src/ssuis_cpsk_SNP_calling.sh -i $1 -o $2 -t $n_threads
 
         # identify variants at position 483
         variants=$(awk '!/#/' $2/*.vcf | cut -f2)
@@ -127,7 +118,7 @@ variant_calling() {
 
     elif [[ " ${serotypeArray[@]} " =~ " 2 " ]]; then
         mkdir -p $2
-        #$pipeline_dir/src/ssuis_cpsk_SNP_calling.sh -i $1 -o $2 -t $n_threads
+        $pipeline_dir/src/ssuis_cpsk_SNP_calling.sh -i $1 -o $2 -t $n_threads
 
         # identify variants at position 483
         variants=$(awk '!/#/' $2/*.vcf | cut -f2)
@@ -165,8 +156,8 @@ clean() {
 # main
 main() {
 
-    #assembly $read_path $out_dir/assembly
-    blast_search $out_dir/$sample_name.fasta $out_dir/blast_res
+    assembly $read_path $out_dir/assembly
+    blast_search $out_dir/${sample_name}_flye.fasta $out_dir/blast_res
     variant_calling $read_path $out_dir/variant_calling
     write_file $out_dir
     clean $out_dir
