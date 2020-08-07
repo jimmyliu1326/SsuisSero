@@ -13,7 +13,7 @@ This pipeline is designed to rapidly infer Streptococcus suis serotype from Oxfo
 
 <b>Optional arguments:</b>
 -h|--help       display help message
--t|--threads    number of threads [4]
+-t|--threads    number of threads [Default: 4]
 
 <b>Example Command Line:</b>
 SsuisSero.sh -s Sample_1 -i /path/to/Sample_1.fastq -o /path/to/output
