@@ -6,9 +6,10 @@ This pipeline is designed to rapidly infer Streptococcus suis serotype from Oxfo
 ## Usage
 <pre>
 <b>Required arguments:</b>
--i  input raw reads
+-i  input file
 -o  path to output directory
 -s  sample name
+-x  input type [fasta or fastq]
 
 <b>Optional arguments:</b>
 -h|--help       display help message
