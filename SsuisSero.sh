@@ -73,7 +73,7 @@ assembly() {
     if test -f $1; then
 
         # Flye assembly
-        flye -t $n_threads --nano-raw $1 -g 2m -i 2 -o $2
+        flye -t $n_threads --nano-raw $1 -g 2.1m -i 2 -o $2
 
         # genome polish
         medaka_consensus -t $n_threads -i $1 -d $2/assembly.fasta -o $out_dir -f
