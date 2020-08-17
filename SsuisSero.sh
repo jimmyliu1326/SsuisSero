@@ -135,7 +135,7 @@ variant_calling() {
 
 
         # identify variants at position 483
-        if echo $variants | grep -q 483; then
+        if echo $variants | grep -q "^483$"; then
             for (( i=0; i<${#serotypeArray[@]}; i++ )); do
                 if [[ ${serotypeArray[i]} == "1" ]]; then
                     serotypeArray[i]="14"
@@ -163,7 +163,7 @@ variant_calling() {
         fi
 
         # identify variants at position 483
-        if echo $variants | grep -q 483; then
+        if echo $variants | grep -q "^483$"; then
             for (( i=0; i<${#serotypeArray[@]}; i++ )); do
                 if [[ ${serotypeArray[i]} == "2" ]]; then
                     serotypeArray[i]="1/2"
