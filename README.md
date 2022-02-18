@@ -1,7 +1,7 @@
 # SsuisSero
 
 ## Description
-This pipeline is designed to rapidly infer Streptococcus suis serotype from Oxford Nanopore Data by first assemblying a draft genome using Miniasm followed by genome polishing with racon and medaka. The processed assembly is subsequently queried against the Cps Blast Database to determine isolate serotype. An additional variant calling step is employed to resolve serotype 2 and 1/2, as well as 1 and 14.
+This pipeline is designed to rapidly infer Streptococcus suis serotype from Oxford Nanopore data by first assemblying a draft genome using Flye followed by genome polishing with racon and medaka. The processed assembly is subsequently queried against the Cps Blast Database to determine isolate serotype. An additional variant calling step is employed to resolve serotype 2 and 1/2, as well as 1 and 14.
 
 ## Usage
 <pre>
